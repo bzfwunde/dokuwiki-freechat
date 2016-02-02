@@ -32,7 +32,7 @@ class syntax_plugin_freechat extends DokuWiki_Syntax_Plugin {
     }
 
     /* parse paramters (if used as {{chat>[chatid=...|rooms=...[,...]]}}) */
-    function handle($match, $state, $pos, &$handler) {
+    function handle($match, $state, $pos, Doku_Handler $handler) {
         if ( $match == '~~CHAT~~' )
             return array();
 
@@ -50,7 +50,7 @@ class syntax_plugin_freechat extends DokuWiki_Syntax_Plugin {
         return $data;
     }
 
-    function render($mode, &$renderer, $data){
+    function render($mode, Doku_Renderer $renderer, $data){
         global $conf, $USERINFO, $ID;
 
         if(auth_quickaclcheck($ID) >= AUTH_READ) {
